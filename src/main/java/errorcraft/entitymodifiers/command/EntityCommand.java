@@ -66,6 +66,13 @@ public class EntityCommand {
 			LootContext.Builder builder = new LootContext.Builder(world).parameter(LootContextParameters.ORIGIN, source.getPosition()).optionalParameter(LootContextParameters.THIS_ENTITY, entity);
 			modifier.apply(entity, builder.build(LootContextTypes.COMMAND));
 		}
+
+		if (targets.size() == 1) {
+			source.sendFeedback(new TranslatableText("commands.entity.modify.success.single", targets.iterator().next().getDisplayName()), true);
+		} else {
+			source.sendFeedback(new TranslatableText("commands.entity.modify.success.multiple", targets.size()), true);
+		}
+
 		return targets.size();
 	}
 }

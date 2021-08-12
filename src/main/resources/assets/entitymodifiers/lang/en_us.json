@@ -1,3 +1,5 @@
 {
-  "entity_modifier.unknown": "Unknown entity modifier: %s"
+  "entity_modifier.unknown": "Unknown entity modifier: %s",
+  "commands.entity.modify.success.single": "Modified entity %s",
+  "commands.entity.modify.success.multiple": "Modified %s entities"
 }
