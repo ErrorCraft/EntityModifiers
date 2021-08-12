@@ -10,7 +10,9 @@ import net.minecraft.util.profiler.Profiler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 public class EntityModifierManager extends JsonDataLoader {
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -34,5 +36,13 @@ public class EntityModifierManager extends JsonDataLoader {
 			}
 		}
 		this.modifiers = builder.build();
+	}
+
+	public EntityModifier get(Identifier resourceLocation) {
+		return this.modifiers.get(resourceLocation);
+	}
+
+	public Set<Identifier> getKeys() {
+		return Collections.unmodifiableSet(this.modifiers.keySet());
 	}
 }
