@@ -4,7 +4,11 @@
   "package": "errorcraft.entitymodifiers.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "registry.RegistryAccessor"
+    "registry.RegistryAccessor",
+    "resource.ServerResourceManagerAccessor",
+    "resource.ServerResourceManagerExtender",
+    "server.MinecraftServerAccessor",
+    "server.MinecraftServerExtender"
   ],
   "client": [
   ],
