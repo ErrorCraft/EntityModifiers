@@ -1,7 +1,7 @@
-package errorcraft.entitymodifiers.mixin.server;
+package errorcraft.entitymodifiers.access.resource;
 
 import errorcraft.entitymodifiers.entity.modifier.EntityModifierManager;
 
-public interface MinecraftServerExtenderAccess {
+public interface ServerResourceManagerExtenderAccess {
 	EntityModifierManager getEntityModifierManager();
 }

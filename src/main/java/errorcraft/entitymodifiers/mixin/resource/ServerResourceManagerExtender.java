@@ -1,5 +1,6 @@
 package errorcraft.entitymodifiers.mixin.resource;
 
+import errorcraft.entitymodifiers.access.resource.ServerResourceManagerExtenderAccess;
 import errorcraft.entitymodifiers.entity.modifier.EntityModifierManager;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
