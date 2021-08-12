@@ -1,6 +1,7 @@
 package errorcraft.entitymodifiers.entity.modifier;
 
 import errorcraft.entitymodifiers.entity.modifier.modifiers.SetHealthEntityModifier;
+import errorcraft.entitymodifiers.entity.modifier.modifiers.SetHungerEntityModifier;
 import errorcraft.entitymodifiers.entity.modifier.modifiers.SetInvulnerableEntityModifier;
 import errorcraft.entitymodifiers.mixin.registry.RegistryAccessor;
 import net.minecraft.util.Identifier;
@@ -14,6 +15,7 @@ public class EntityModifierTypes {
 
 	public static final EntityModifierType SET_INVULNERABLE = register("set_invulnerable", new SetInvulnerableEntityModifier.Serialiser());
 	public static final EntityModifierType SET_HEALTH = register("set_health", new SetHealthEntityModifier.Serialiser());
+	public static final EntityModifierType SET_HUNGER = register("set_hunger", new SetHungerEntityModifier.Serialiser());
 
 	public static Object createGsonAdapter() {
 		return JsonSerializing.createSerializerBuilder(ENTITY_MODIFIER_TYPE, "function", "function", EntityModifier::getType).build();
