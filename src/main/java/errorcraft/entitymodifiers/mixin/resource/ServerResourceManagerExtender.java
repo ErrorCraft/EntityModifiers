@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerResourceManagerExtender implements ServerResourceManagerExtenderAccess {
 	private EntityModifierManager entityModifierManager;
 
-	@Inject(at = @At("RETURN"), method = "<init>(Lnet/minecraft/util/registry/DynamicRegistryManager; Lnet/minecraft/server/command/CommandManager/RegistrationEnvironment; I)V")
+	@Inject(at = @At("RETURN"), method = "<init>(Lnet/minecraft/util/registry/DynamicRegistryManager; Lnet/minecraft/server/command/CommandManager$RegistrationEnvironment; I)V")
 	private void injectEntityModifierManagerIntoConstructor(DynamicRegistryManager registryManager, RegistrationEnvironment commandEnvironment, int functionPermissionLevel, CallbackInfo info) {
 		this.entityModifierManager = new EntityModifierManager();
 		((ServerResourceManagerAccessor)this).getResourceManager().registerReloader(this.entityModifierManager);
