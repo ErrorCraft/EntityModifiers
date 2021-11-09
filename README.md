@@ -1,5 +1,6 @@
 # Entity Modifiers
 This is a fabric mod that adds entity modifiers to Minecraft.
+There's a [wiki](https://github.com/ErrorCraft/EntityModifiers/wiki) for more information about the entity modifier functions and the `entity` command.
 
 Entity modifiers are similar to item modifiers, except that they work with entities rather than items!
 They are supposed to replace the `data modify entity ...` commands.
