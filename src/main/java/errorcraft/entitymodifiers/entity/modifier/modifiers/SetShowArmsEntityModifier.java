@@ -13,10 +13,10 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.JsonHelper;
 
 public class SetShowArmsEntityModifier implements EntityModifier {
-	private final boolean show_arms;
+	private final boolean showArms;
 
-	public SetShowArmsEntityModifier(boolean show_arms) {
-		this.show_arms = show_arms;
+	public SetShowArmsEntityModifier(boolean showArms) {
+		this.showArms = showArms;
 	}
 
 	@Override
@@ -27,10 +27,8 @@ public class SetShowArmsEntityModifier implements EntityModifier {
 	@Override
 	public Entity apply(Entity entity, LootContext lootContext) {
 		if (entity instanceof ArmorStandEntity armorStand) {
-			((ArmorStandEntityAccessor)armorStand).invokeSetShowArms(show_arms);
+			((ArmorStandEntityAccessor)armorStand).invokeSetShowArms(showArms);
 		}
-
-		System.out.println(entity.toString());
 
 		return entity;
 	}
@@ -38,13 +36,13 @@ public class SetShowArmsEntityModifier implements EntityModifier {
 	public static class Serialiser implements EntityModifier.Serialiser<SetShowArmsEntityModifier> {
 		@Override
 		public void toJson(JsonObject json, SetShowArmsEntityModifier object, JsonSerializationContext context) {
-			json.addProperty("show_arms", object.show_arms);
+			json.addProperty("show_arms", object.showArms);
 		}
 
 		@Override
 		public SetShowArmsEntityModifier fromJson(JsonObject json, JsonDeserializationContext context) {
-			boolean show_arms = JsonHelper.getBoolean(json, "show_arms");
-			return new SetShowArmsEntityModifier(show_arms);
+			boolean showArms = JsonHelper.getBoolean(json, "show_arms");
+			return new SetShowArmsEntityModifier(showArms);
 		}
 	}
 }
