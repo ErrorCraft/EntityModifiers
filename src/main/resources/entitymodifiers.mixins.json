@@ -4,6 +4,7 @@
   "package": "errorcraft.entitymodifiers.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "entities.ArmorStandEntityAccessor",
     "registry.RegistryAccessor",
     "resource.ServerResourceManagerAccessor",
     "resource.ServerResourceManagerExtender",

@@ -18,6 +18,7 @@ public class EntityModifierTypes {
 	public static final EntityModifierType SET_FIRE_TIME = register("set_fire_time", new SetFireTimeEntityModifier.Serialiser());
 	public static final EntityModifierType SET_CUSTOM_NAME = register("set_custom_name", new SetCustomNameEntityModifier.Serialiser());
 	public static final EntityModifierType SET_ABSORPTION = register("set_absorption", new SetAbsorptionEntityModifier.Serialiser());
+	public static final EntityModifierType SET_SHOW_ARMS = register("set_show_arms", new SetShowArmsEntityModifier.Serialiser());
 
 	public static Object createGsonAdapter() {
 		return JsonSerializing.createSerializerBuilder(ENTITY_MODIFIER_TYPE, "function", "function", EntityModifier::getType).build();
