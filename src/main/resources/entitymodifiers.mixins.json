@@ -8,6 +8,7 @@
     "registry.RegistryAccessor",
     "resource.ServerResourceManagerAccessor",
     "resource.ServerResourceManagerExtender",
+    "server.command.SummonCommandAccessor",
     "server.MinecraftServerAccessor",
     "server.MinecraftServerExtender"
   ],
