@@ -11,6 +11,8 @@ import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.provider.number.LootNumberProvider;
+import net.minecraft.network.packet.s2c.play.HealthUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.math.MathHelper;
 
@@ -40,6 +42,10 @@ public class SetHungerEntityModifier implements EntityModifier {
 		HungerManager hungerManager = player.getHungerManager();
 		int newHunger = this.add ? hungerManager.getFoodLevel() : 0;
 		hungerManager.setFoodLevel(MathHelper.clamp(newHunger + this.hungerProvider.nextInt(lootContext), 0, 20));
+
+		if (player instanceof ServerPlayerEntity serverPlayer) {
+			serverPlayer.networkHandler.sendPacket(new HealthUpdateS2CPacket(serverPlayer.getHealth(), hungerManager.getFoodLevel(), hungerManager.getSaturationLevel()));
+		}
 	}
 
 	public static class Serialiser implements EntityModifier.Serialiser<SetHungerEntityModifier> {
