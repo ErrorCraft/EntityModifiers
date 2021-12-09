@@ -13,7 +13,7 @@
     "sources": "https://github.com/ErrorCraft/EntityModifiers"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/entitymodifiers/icon.png",
 
   "environment": "*",
