@@ -10,6 +10,12 @@ This makes changing entities much more powerful, as we can provide context to wh
 - When we are working with text components we can use advanced components such as `score` that resolve properly.
 - Because we are editing direct values and not save data, we can apply this to players as well! This enables player-specific features like hunger.
 
+## Downloads
+|**Version**|**Game Version**|**Link**|
+|-|-|-|
+|1.0.0|1.17.x|[Download](https://github.com/ErrorCraft/EntityModifiers/releases/tag/v1.0.0)|
+|1.1.0|1.18.x|[Download](https://github.com/ErrorCraft/EntityModifiers/releases/tag/v1.1.0)|
+
 ## Using entity modifiers
 Entity modifiers are JSON files in data packs.
 You can create entity modifiers under the `modifiers/entities` folder in your namespace.
