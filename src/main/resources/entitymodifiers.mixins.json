@@ -5,10 +5,8 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "registry.RegistryAccessor",
-    "resource.ServerResourceManagerAccessor",
-    "resource.ServerResourceManagerExtender",
     "server.command.SummonCommandAccessor",
-    "server.MinecraftServerAccessor",
+    "server.DataPackContentsExtender",
     "server.MinecraftServerExtender"
   ],
   "client": [

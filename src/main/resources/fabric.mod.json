@@ -25,6 +25,7 @@
   "mixins": [
     "entitymodifiers.mixins.json"
   ],
+  "accessWidener": "entitymodifiers.accesswidener",
 
   "depends": {
     "fabricloader": ">=0.12.5",

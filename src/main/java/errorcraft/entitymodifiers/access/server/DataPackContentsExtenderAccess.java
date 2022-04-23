@@ -1,7 +1,7 @@
-package errorcraft.entitymodifiers.access.resource;
+package errorcraft.entitymodifiers.access.server;
 
 import errorcraft.entitymodifiers.entity.modifier.EntityModifierManager;
 
-public interface ServerResourceManagerExtenderAccess {
+public interface DataPackContentsExtenderAccess {
 	EntityModifierManager getEntityModifierManager();
 }

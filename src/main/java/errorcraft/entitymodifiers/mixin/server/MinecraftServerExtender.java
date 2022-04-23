@@ -1,17 +1,20 @@
 package errorcraft.entitymodifiers.mixin.server;
 
+import errorcraft.entitymodifiers.access.server.DataPackContentsExtenderAccess;
 import errorcraft.entitymodifiers.access.server.MinecraftServerExtenderAccess;
 import errorcraft.entitymodifiers.entity.modifier.EntityModifierManager;
-import errorcraft.entitymodifiers.mixin.resource.ServerResourceManagerAccessor;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerExtender implements MinecraftServerExtenderAccess {
+	@Shadow
+	private MinecraftServer.ResourceManagerHolder resourceManagerHolder;
+
 	@Override
 	public EntityModifierManager getEntityModifierManager() {
-		MinecraftServerAccessor thisAccessor = (MinecraftServerAccessor)this;
-		ServerResourceManagerAccessor serverResourceManagerAccessor = (ServerResourceManagerAccessor)(thisAccessor.getServerResourceManager());
-		return serverResourceManagerAccessor.getEntityModifierManager();
+		DataPackContentsExtenderAccess dataPackContentsExtenderAccess = (DataPackContentsExtenderAccess)(this.resourceManagerHolder.dataPackContents());
+		return dataPackContentsExtenderAccess.getEntityModifierManager();
 	}
 }
