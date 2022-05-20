@@ -6,21 +6,19 @@ import com.google.gson.JsonSerializationContext;
 import errorcraft.entitymodifiers.entity.modifier.EntityModifier;
 import errorcraft.entitymodifiers.entity.modifier.EntityModifierType;
 import errorcraft.entitymodifiers.entity.modifier.EntityModifierTypes;
+import errorcraft.entitymodifiers.world.position.provider.PositionProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.provider.number.LootNumberProvider;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.JsonHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class SetPositionEntityModifier implements EntityModifier {
-    private final LootNumberProvider x;
-    private final LootNumberProvider y;
-    private final LootNumberProvider z;
+    private final PositionProvider position;
 
-    public SetPositionEntityModifier(LootNumberProvider x, LootNumberProvider y, LootNumberProvider z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public SetPositionEntityModifier(PositionProvider position) {
+        this.position = position;
     }
 
     @Override
@@ -30,37 +28,31 @@ public class SetPositionEntityModifier implements EntityModifier {
 
     @Override
     public Entity apply(Entity entity, LootContext lootContext) {
-        double newX = this.x.nextFloat(lootContext);
-        double newY = this.y.nextFloat(lootContext);
-        double newZ = this.z.nextFloat(lootContext);
-        entity.setPosition(newX, newY, newZ);
+        Vec3d newPos = this.position.getPosition(entity.getPos(), entity.getRotationClient(), lootContext);
+        entity.setPosition(newPos);
         if (entity instanceof ServerPlayerEntity player) {
-            setPlayerPosition(player, newX, newY, newZ);
+            setPlayerPosition(player, newPos);
         }
         return entity;
     }
 
-    private static void setPlayerPosition(ServerPlayerEntity player, double x, double y, double z) {
+    private static void setPlayerPosition(ServerPlayerEntity player, Vec3d pos) {
         if (player.isSleeping()) {
             player.wakeUp(true, true);
         }
-        player.requestTeleportAndDismount(x, y, z);
+        player.requestTeleportAndDismount(pos.getX(), pos.getY(), pos.getZ());
     }
 
     public static class Serialiser implements EntityModifier.Serialiser<SetPositionEntityModifier> {
         @Override
         public void toJson(JsonObject json, SetPositionEntityModifier object, JsonSerializationContext context) {
-            json.add("x", context.serialize(object.x));
-            json.add("y", context.serialize(object.y));
-            json.add("z", context.serialize(object.z));
+            json.add("position", context.serialize(object.position));
         }
 
         @Override
         public SetPositionEntityModifier fromJson(JsonObject json, JsonDeserializationContext context) {
-            LootNumberProvider x = JsonHelper.deserialize(json, "x", context, LootNumberProvider.class);
-            LootNumberProvider y = JsonHelper.deserialize(json, "y", context, LootNumberProvider.class);
-            LootNumberProvider z = JsonHelper.deserialize(json, "z", context, LootNumberProvider.class);
-            return new SetPositionEntityModifier(x, y, z);
+            PositionProvider position = JsonHelper.deserialize(json, "position", context, PositionProvider.class);
+            return new SetPositionEntityModifier(position);
         }
     }
 }
