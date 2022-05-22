@@ -1,6 +1,7 @@
 package errorcraft.entitymodifiers.entity.modifier;
 
 import com.google.gson.GsonBuilder;
+import errorcraft.entitymodifiers.util.RelativeNumberProvider;
 import errorcraft.entitymodifiers.world.position.provider.PositionProvider;
 import errorcraft.entitymodifiers.world.position.provider.PositionProviderTypes;
 import net.minecraft.loot.context.LootContext;
@@ -18,6 +19,7 @@ class Deserialisers {
 			.registerTypeHierarchyAdapter(LootNumberProvider.class, LootNumberProviderTypes.createGsonSerializer())
 			.registerTypeHierarchyAdapter(LootScoreProvider.class, LootScoreProviderTypes.createGsonSerializer())
 			.registerTypeHierarchyAdapter(LootContext.EntityTarget.class, new LootContext.EntityTarget.Serializer())
-			.registerTypeHierarchyAdapter(PositionProvider.class, PositionProviderTypes.createGsonAdapter());
+			.registerTypeHierarchyAdapter(PositionProvider.class, PositionProviderTypes.createGsonAdapter())
+			.registerTypeHierarchyAdapter(RelativeNumberProvider.class, new RelativeNumberProvider.Serialiser());
 	}
 }

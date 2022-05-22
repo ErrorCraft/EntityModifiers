@@ -3,21 +3,21 @@ package errorcraft.entitymodifiers.world.position.provider.providers;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
+import errorcraft.entitymodifiers.util.RelativeNumberProvider;
 import errorcraft.entitymodifiers.world.position.provider.PositionProvider;
 import errorcraft.entitymodifiers.world.position.provider.PositionProviderType;
 import errorcraft.entitymodifiers.world.position.provider.PositionProviderTypes;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.provider.number.LootNumberProvider;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
 public class WorldPositionProvider implements PositionProvider {
-    private final LootNumberProvider x;
-    private final LootNumberProvider y;
-    private final LootNumberProvider z;
+    private final RelativeNumberProvider x;
+    private final RelativeNumberProvider y;
+    private final RelativeNumberProvider z;
 
-    public WorldPositionProvider(LootNumberProvider x, LootNumberProvider y, LootNumberProvider z) {
+    public WorldPositionProvider(RelativeNumberProvider x, RelativeNumberProvider y, RelativeNumberProvider z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -29,9 +29,9 @@ public class WorldPositionProvider implements PositionProvider {
 
     @Override
     public Vec3d getPosition(Vec3d currentPosition, Vec2f rotation, LootContext lootContext) {
-        double newX = this.x.nextFloat(lootContext);
-        double newY = this.y.nextFloat(lootContext);
-        double newZ = this.z.nextFloat(lootContext);
+        double newX = this.x.getDouble(currentPosition.getX(), lootContext);
+        double newY = this.y.getDouble(currentPosition.getY(), lootContext);
+        double newZ = this.z.getDouble(currentPosition.getZ(), lootContext);
         return new Vec3d(newX, newY, newZ);
     }
 
@@ -45,9 +45,9 @@ public class WorldPositionProvider implements PositionProvider {
 
         @Override
         public WorldPositionProvider fromJson(JsonObject json, JsonDeserializationContext context) {
-            LootNumberProvider x = JsonHelper.deserialize(json, "x", context, LootNumberProvider.class);
-            LootNumberProvider y = JsonHelper.deserialize(json, "y", context, LootNumberProvider.class);
-            LootNumberProvider z = JsonHelper.deserialize(json, "z", context, LootNumberProvider.class);
+            RelativeNumberProvider x = JsonHelper.deserialize(json, "x", context, RelativeNumberProvider.class);
+            RelativeNumberProvider y = JsonHelper.deserialize(json, "y", context, RelativeNumberProvider.class);
+            RelativeNumberProvider z = JsonHelper.deserialize(json, "z", context, RelativeNumberProvider.class);
             return new WorldPositionProvider(x, y, z);
         }
     }
