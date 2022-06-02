@@ -1,6 +1,7 @@
 package errorcraft.entitymodifiers.world.position.provider;
 
 import errorcraft.entitymodifiers.mixin.registry.RegistryAccessor;
+import errorcraft.entitymodifiers.world.position.provider.providers.LocalPositionProvider;
 import errorcraft.entitymodifiers.world.position.provider.providers.WorldPositionProvider;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonSerializing;
@@ -12,6 +13,7 @@ public class PositionProviderTypes {
     public static final Registry<PositionProviderType> POSITION_PROVIDER_TYPE = RegistryAccessor.create(POSITION_PROVIDER_TYPE_KEY, registry -> PositionProviderTypes.WORLD);
 
     public static final PositionProviderType WORLD = register("world", new WorldPositionProvider.Serialiser());
+    public static final PositionProviderType LOCAL = register("local", new LocalPositionProvider.Serialiser());
 
     public static Object createGsonAdapter() {
         return JsonSerializing.createSerializerBuilder(POSITION_PROVIDER_TYPE, "type", "type", PositionProvider::getType).build();
