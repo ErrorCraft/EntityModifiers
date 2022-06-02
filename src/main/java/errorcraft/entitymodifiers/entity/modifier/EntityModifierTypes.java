@@ -19,6 +19,7 @@ public class EntityModifierTypes {
 	public static final EntityModifierType SET_CUSTOM_NAME = register("set_custom_name", new SetCustomNameEntityModifier.Serialiser());
 	public static final EntityModifierType SET_ABSORPTION = register("set_absorption", new SetAbsorptionEntityModifier.Serialiser());
 	public static final EntityModifierType SET_SATURATION = register("set_saturation", new SetSaturationEntityModifier.Serialiser());
+	public static final EntityModifierType SET_POSITION = register("set_position", new SetPositionEntityModifier.Serialiser());
 
 	public static Object createGsonAdapter() {
 		return JsonSerializing.createSerializerBuilder(ENTITY_MODIFIER_TYPE, "function", "function", EntityModifier::getType).build();
