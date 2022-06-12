@@ -14,7 +14,7 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -57,7 +57,7 @@ public class SummonCommand {
 			throw SummonCommandAccessor.getFailedUUIDException().create();
 		}
 
-		source.sendFeedback(new TranslatableText("commands.summon.success", actualEntity.getDisplayName()), true);
+		source.sendFeedback(Text.translatable("commands.summon.success", actualEntity.getDisplayName()), true);
 		return 1;
 	}
 }

@@ -10,11 +10,11 @@ import errorcraft.entitymodifiers.entity.modifier.EntityModifierManager;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class CommandUtils {
-	private static final DynamicCommandExceptionType UNKNOWN_ENTITY_MODIFIER = new DynamicCommandExceptionType(object -> new TranslatableText("entity_modifier.unknown", object));
+	private static final DynamicCommandExceptionType UNKNOWN_ENTITY_MODIFIER = new DynamicCommandExceptionType(object -> Text.translatable("entity_modifier.unknown", object));
 	public static final SuggestionProvider<ServerCommandSource> ENTITY_MODIFIER_SUGGESTION_PROVIDER = (context, builder) -> {
 		MinecraftServerExtenderAccess serverExtenderAccess = (MinecraftServerExtenderAccess)(context.getSource().getServer());
 		EntityModifierManager entityModifierManager = serverExtenderAccess.getEntityModifierManager();

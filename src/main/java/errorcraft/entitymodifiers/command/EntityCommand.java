@@ -11,7 +11,7 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.Collection;
 
@@ -41,9 +41,9 @@ public class EntityCommand {
 		}
 
 		if (targets.size() == 1) {
-			source.sendFeedback(new TranslatableText("commands.entity.modify.success.single", targets.iterator().next().getDisplayName()), true);
+			source.sendFeedback(Text.translatable("commands.entity.modify.success.single", targets.iterator().next().getDisplayName()), true);
 		} else {
-			source.sendFeedback(new TranslatableText("commands.entity.modify.success.multiple", targets.size()), true);
+			source.sendFeedback(Text.translatable("commands.entity.modify.success.multiple", targets.size()), true);
 		}
 
 		return targets.size();
