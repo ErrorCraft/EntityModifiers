@@ -15,6 +15,7 @@ This makes changing entities much more powerful, as we can provide context to wh
 |-|-|-|
 |1.0.0|1.17.x|[Download](https://github.com/ErrorCraft/EntityModifiers/releases/tag/v1.0.0)|
 |1.1.0|1.18.x|[Download](https://github.com/ErrorCraft/EntityModifiers/releases/tag/v1.1.0)|
+|1.2.0|1.19|[Download](https://github.com/ErrorCraft/EntityModifiers/releases/tag/v1.2.0)|
 
 ## Using entity modifiers
 Entity modifiers are JSON files in data packs.
